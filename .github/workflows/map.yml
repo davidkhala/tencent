@@ -1,0 +1,17 @@
+name: map
+on:
+  push:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: map
+    env:
+      KEY: ${{secrets.KEY}}
+    steps:
+      - uses: actions/checkout@main
+      - uses: davidkhala/uv-buildpack@main
+        with:
+          test-entry-point: pytest test_map.py
+          tests: map/py/tests
+          working-directory: map/py
+
